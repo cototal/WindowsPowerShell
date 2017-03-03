@@ -15,5 +15,23 @@ function Select-ItemsInDirectory($searchString) {
     Select-Object -Unique Path
 }
 Set-Alias ack Select-ItemsInDirectory
+
+function Add-GitCommit($message) {
+    git add . -A
+    git commit -m $message
+}
+Set-Alias gam Add-GitCommit
+
+function Update-GitCommit() {
+    git add . -A
+    git commit --amend --no-edit
+}
+Set-Alias gamend Update-GitCommit
+
+function Get-RecentGitLog() {
+    git log --max-count=15 --pretty=format:\"%h - %an, %ar : %s\"
+}
+Set-Alias gitlog Get-RecentGitLog
+
 Clear-Host
 Write-Host "Profile Loaded"
