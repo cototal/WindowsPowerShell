@@ -33,5 +33,17 @@ function Get-RecentGitLog() {
 }
 Set-Alias gitlog Get-RecentGitLog
 
+# Call with: 'rb sample one, two, three'
+function Start-RubyScript($scriptName, $arguments) {
+    # Convert string to array if only one argument is given
+    if ($arguments.GetType() -eq [String]) {
+        $arguments = @($arguments)
+    }
+    ruby $env:USERPROFILE\Scripts\$scriptName.rb @arguments
+}
+Set-Alias rb Start-RubyScript
+
+Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
+
 Clear-Host
 Write-Host "Profile Loaded"
