@@ -44,6 +44,7 @@ function Start-RubyScript($scriptName, $arguments) {
 Set-Alias rb Start-RubyScript
 
 Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
+Set-Alias ll Get-ChildItem
 
 Clear-Host
 Write-Host "Profile Loaded"
