@@ -43,6 +43,11 @@ function Start-RubyScript($scriptName, $arguments) {
 }
 Set-Alias rb Start-RubyScript
 
+function Write-BlankFile($filename) {
+    [IO.File]::WriteAllLines($filename, "")
+}
+Set-Alias touch Write-BlankFile
+
 Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
 Set-Alias ll Get-ChildItem
 
