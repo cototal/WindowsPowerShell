@@ -43,6 +43,11 @@ function Start-RubyScript($scriptName, $arguments) {
 }
 Set-Alias rb Start-RubyScript
 
+function Set-WordPressDirectory($themePlugin, $name) {
+    cd "wp-content`\$themePlugin`\$name"
+}
+Set-Alias wpd Set-WordPressDirectory
+
 Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
 
 Clear-Host
