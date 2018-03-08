@@ -48,7 +48,13 @@ function Set-WordPressDirectory($themePlugin, $name) {
 }
 Set-Alias wpd Set-WordPressDirectory
 
+function Write-BlankFile($filename) {
+    [IO.File]::WriteAllLines($filename, "")
+}
+Set-Alias touch Write-BlankFile
+
 Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
+Set-Alias ll Get-ChildItem
 
 Clear-Host
 Write-Host "Profile Loaded"
