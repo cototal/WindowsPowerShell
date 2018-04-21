@@ -53,6 +53,16 @@ function Write-BlankFile($filename) {
 }
 Set-Alias touch Write-BlankFile
 
+# Use with docker as:
+#   docker run --name cont -it --rm -v "$(upwd):/myapp" -p 5000:5000 img
+function Set-UnixPwd() {
+    $path = $pwd
+    $path = $path -replace "\\", "/"
+    $path = $path -replace "C:", "/c"
+    return $path
+}
+Set-Alias upwd Set-UnixPwd
+
 Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
 Set-Alias ll Get-ChildItem
 
