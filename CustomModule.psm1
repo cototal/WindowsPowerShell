@@ -33,6 +33,11 @@ function Get-RecentGitLog() {
 }
 Set-Alias gitlog Get-RecentGitLog
 
+function Start-SshProxy($host) {
+    ssh -D 8123 -f -C -q -N $host
+}
+Set-Alias spx Start-SshProxy
+
 # Call with: 'rb sample one, two, three'
 function Start-RubyScript($scriptName, $arguments) {
     # Convert string to array if only one argument is given
