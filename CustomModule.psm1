@@ -68,12 +68,12 @@ function Set-UnixPwd() {
 }
 Set-Alias upwd Set-UnixPwd
 
-function Set-WorkingDirectory() {
-    $(Get-Location).Path | Out-File "/tmp/swd"
+function Set-WorkingDirectory($Project = "default") {
+    $(Get-Location).Path | Out-File "/tmp/swd-$Project"
 }
 
-function Get-WorkingDirectory() {
-    Set-Location -Path $(Get-Content "/tmp/swd")
+function Get-WorkingDirectory($Project = "default") {
+    Set-Location -Path $(Get-Content "/tmp/swd-$Project")
 }
 
 Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
