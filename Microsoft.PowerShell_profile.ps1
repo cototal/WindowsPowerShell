@@ -1,3 +1,5 @@
 $modulePath = Split-Path -Path $profile
-$moduleName = "CustomModule.psm1"
-Import-Module "$($modulePath)\$($moduleName)"
+$dockerUtilsModule = "DockerUtilsModule.psm1"
+Import-Module "$($modulePath)\$($dockerUtilsModule)"
+$customModule = "CustomModule.psm1"
+Import-Module "$($modulePath)\$($customModule)"

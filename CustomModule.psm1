@@ -77,15 +77,15 @@ Set-Alias upwd Set-UnixPwd
 function Set-WorkingDirectory($Project = "default") {
     $(Get-Location).Path | Out-File "/tmp/swd-$Project"
 }
+Set-Alias swd Set-WorkingDirectory
 
 function Get-WorkingDirectory($Project = "default") {
     Set-Location -Path $(Get-Content "/tmp/swd-$Project")
 }
+Set-Alias lwd Get-WorkingDirectory
 
 Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
 Set-Alias ll Get-ChildItem
-Set-Alias swd Set-WorkingDirectory
-Set-Alias lwd Get-WorkingDirectory
 
 Clear-Host
 Write-Host "Profile Loaded"
