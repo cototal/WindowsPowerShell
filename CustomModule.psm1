@@ -58,6 +58,12 @@ function Write-BlankFile($filename) {
 }
 Set-Alias touch Write-BlankFile
 
+function Get-RandomString($length = 16) {
+    -join ((48..57) * 10 + (97..122) * 10 | Get-Random -Count $length | ForEach-Object {[char]$_})
+}
+Set-Alias rnd Get-RandomString
+
+# @deprecated: Just use ${PWD}
 # Use with docker as:
 #   docker run --name cont -it --rm -v "$(upwd):/myapp" -p 5000:5000 img
 function Set-UnixPwd() {
