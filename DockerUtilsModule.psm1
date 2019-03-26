@@ -28,6 +28,11 @@ function Invoke-SymfonyPsysh($container) {
 }
 Set-Alias dsysh Invoke-SymfonyPsysh
 
+function Invoke-MongoClient($container = "mongo", $network = "services") {
+    docker run -it --rm --network $network mongo mongo --host $container
+}
+Set-Alias dgo Invoke-MongoClient
+
 function Out-DockerCommands() {
     Write-Output "dack(word) - ack for word from utils container"
     Write-Output "dbash(container) - run bash from specified container"
@@ -35,6 +40,7 @@ function Out-DockerCommands() {
     Write-Output "dstail(container) - tail Symfony log of specified container"
     Write-Output "dsrun(container) - run symfony server from specified container"
     Write-Output "dsysh(container) - run psysh from specified container"
+    Write-Output "dgo(container[mongo], network[services]) - client for running MongoDB service"
 }
 Set-Alias dcmd Out-DockerCommands
 Set-Alias dcmds Out-DockerCommands
