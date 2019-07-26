@@ -33,8 +33,8 @@ function Invoke-MongoClient($container = "mongo", $network = "services") {
 }
 Set-Alias dgo Invoke-MongoClient
 
-function Invoke-MySQLClient($container = "mysql", $network = "services") {
-    docker run -it --network $network mysql:5 mysql -u root -p -h $container
+function Invoke-MySQLClient($image = "mysql:5", $network = "services") {
+    docker run -it --rm -v ${PWD}:/data --network $network $image bash
 }
 Set-Alias dsql Invoke-MySQLClient
 
@@ -46,7 +46,7 @@ function Out-DockerCommands() {
     Write-Output "dsrun(container) - run symfony server from specified container"
     Write-Output "dsysh(container) - run psysh from specified container"
     Write-Output "dgo(container[mongo], network[services]) - client for running MongoDB service"
-    Write-Output "dsql(container[mysql], network[services]) - client for running MySQL service"
+    Write-Output "dsql(image[mysql:5], network[services]) - client for running SQL service"
 }
 Set-Alias dcmd Out-DockerCommands
 Set-Alias dcmds Out-DockerCommands
