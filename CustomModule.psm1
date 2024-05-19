@@ -33,8 +33,8 @@ function Get-RecentGitLog() {
 }
 Set-Alias gitlog Get-RecentGitLog
 
-function Start-SshProxy($host) {
-    ssh -D 8123 -f -C -q -N $host
+function Start-SshProxy($hostName) {
+    ssh -D 8123 -f -C -q -N $hostName
 }
 Set-Alias spx Start-SshProxy
 
@@ -74,17 +74,43 @@ function Set-UnixPwd() {
 }
 Set-Alias upwd Set-UnixPwd
 
+# @deprecated: Use Go versions for better handling
 function Set-WorkingDirectory($Project = "default") {
     $(Get-Location).Path | Out-File "/tmp/swd-$Project"
 }
-Set-Alias swd Set-WorkingDirectory
 
+# @deprecated: Use Go versions for better handling
 function Get-WorkingDirectory($Project = "default") {
     Set-Location -Path $(Get-Content "/tmp/swd-$Project")
 }
-Set-Alias lwd Get-WorkingDirectory
 
-Set-Variable VSProjects "$HOME\Documents\Visual Studio 2017\Projects"
+# Depends on the save-working-directory being installed to path
+function Set-GoWorkingDirectory($Project = "default") {
+    save-working-directory -s $Project
+}
+Set-Alias swd Set-GoWorkingDirectory
+
+# Depends on the save-working-directory being installed to path
+function Get-GoWorkingDirectory($Project = "default") {
+    $output = save-working-directory -l $Project
+    if ($LASTEXITCODE -ne 1) {
+        Set-Location -Path $output
+    }
+}
+Set-Alias lwd Get-GoWorkingDirectory
+
+# Depends on the save-working-directory being installed to path
+function Remove-GoWorkingDirectory($Project) {
+    save-working-directory -d $Project
+}
+Set-Alias dwd Remove-GoWorkingDirectory
+
+# Depends on the save-working-directory being installed to path
+function Show-GoWorkingDirectories() {
+    save-working-directory --list
+}
+Set-Alias wdlist Show-GoWorkingDirectories
+
 Set-Alias ll Get-ChildItem
 
 Clear-Host
