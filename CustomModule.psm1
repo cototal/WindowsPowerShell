@@ -113,5 +113,17 @@ Set-Alias wdlist Show-GoWorkingDirectories
 
 Set-Alias ll Get-ChildItem
 
+function Enable-Msys {
+    $msysPath = "C:\msys64\ucrt64\bin;C:\msys64\usr\bin;"
+    if ($env:PATH -notmatch [regex]::Escape($msysPath)) {
+        $env:PATH = $env:PATH + "$msysPath"
+        Write-Host "MSYS2 added to path" -ForegroundColor Green
+    } else {
+        Write-Host "MSYS2 alread on path" -ForegroundColor Yellow
+    }
+}
+
+Set-Alias act .venv/Scripts/Activate.ps1
+
 Clear-Host
 Write-Host "Profile Loaded"
